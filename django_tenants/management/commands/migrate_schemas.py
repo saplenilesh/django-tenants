@@ -4,6 +4,7 @@ from django_tenants.utils import get_tenant_model, get_public_schema_name, schem
 from django_tenants.management.commands import SyncCommon
 from django.utils.module_loading import import_string
 from django.conf import settings
+from django.core.management.commands import migrate
 
 
 GET_EXECUTOR_FUNCTION = getattr(settings, 'GET_EXECUTOR_FUNCTION', None)
@@ -99,5 +100,5 @@ class MigrateSchemasCommand(SyncCommon):
 
                     executor.run_migrations(tenants=tenants)
 
-
+MigrateSchemasCommand.autodetector = getattr(migrate.Command, 'autodetector', None)
 Command = MigrateSchemasCommand
