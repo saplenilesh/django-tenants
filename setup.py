@@ -54,7 +54,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     install_requires=[
-        'Django >=2.1,<5.2',
+        'Django >=2.1,<5.3',
     ],
     zip_safe=False,
 )
