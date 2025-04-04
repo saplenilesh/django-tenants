@@ -98,5 +98,11 @@ class MigrateSchemasCommand(SyncCommon):
                         tenants = tenants.order_by(*migration_order)
 
                     executor.run_migrations(tenants=tenants)
+# Patch for Django 5.2+ compatibility check
+try:
+    from django.core.management.commands import migrate
+    MigrateSchemasCommand.autodetector = getattr(migrate.Command, 'autodetector', None)
+except Exception:
+    pass
 
 Command = MigrateSchemasCommand
